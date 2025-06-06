@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font tanımlaması */
+@font-face {
+  font-family: 'KingRimba';
+  src: url('/fonts/KingRimba.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Tuesday Lovely font tanımlaması */
+@font-face {
+  font-family: 'Tuesday Lovely';
+  src: url('/fonts/Tuesday Lovely.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Martha Hayden font tanımlaması */
+@font-face {
+  font-family: 'Martha Hayden';
+  src: url('/fonts/MarthaHayden-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bulgatti font tanımlaması */
+@font-face {
+  font-family: 'Bulgatti';
+  src: url('/fonts/Bulgatti.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Başlık için özel font sınıfı */
+.baslik-font {
+  font-family: 'KingRimba', sans-serif;
+}
