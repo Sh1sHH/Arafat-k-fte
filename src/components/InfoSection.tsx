@@ -2,8 +2,11 @@ import React from 'react';
 // import Carousel from './Carousel'; // Karusel kaldırıldı
 import { MapPin, Phone, Clock, Mail } from 'lucide-react';
 import { galleryImages } from '../constants'; // Resimler için eklendi
+import { useLanguage } from '../lib/i18n/LanguageContext';
 
 const InfoSection: React.FC = () => {
+  const { t } = useLanguage();
+  
   // Görseller - sabit olarak public klasöründen alınıyor
   const image1 = '/dukkan2.webp';
   const altText1 = 'Arafat Köfte Dükkan Görünümü';
@@ -32,21 +35,21 @@ const InfoSection: React.FC = () => {
           {/* 1. Blok: Hakkımızda Metni (Referanstaki Menus bloğu gibi) */}
           <div className="flex flex-col justify-center p-6 md:p-8 order-1">
             <h3 className="text-3xl md:text-4xl font-semibold text-neutral-800 mb-6 text-left">
-              Arafat Köfte'ye Hoş Geldiniz
+              {t('info_welcome_title')}
             </h3>
             <p className="text-neutral-600 mb-4 leading-relaxed text-left text-lg">
-              1986'dan beri en lezzetli köfteleri sizlerle buluşturuyoruz. Geleneksel tariflerimiz, kaliteli malzemelerimiz ve kuşaktan kuşağa aktarılan tecrübemizle, aile sıcaklığında bir ortamda damak zevkinize hitap ediyoruz.
+              {t('info_welcome_text1')}
             </p>
             <p className="text-neutral-500 mb-8 leading-relaxed text-left text-sm">
-              Misyonumuz, her bir misafirimize unutulmaz bir köfte deneyimi sunmak ve Arafat Köfte adını kalite ve lezzetle özdeşleştirmektir.
+              {t('info_welcome_text2')}
             </p>
             <div className="text-left mt-10">
               <button 
                 onClick={handleMenuScroll}
                 className="inline-block bg-red-700 hover:bg-red-800 text-white font-semibold py-3 px-8 rounded-md shadow-md hover:shadow-lg transition-all duration-300 text-base"
-                aria-label="Menümüzü Keşfedin"
+                aria-label={t('discover_menu')}
               >
-                Menümüzü Keşfedin
+                {t('discover_menu')}
               </button>
             </div>
           </div>
@@ -74,27 +77,23 @@ const InfoSection: React.FC = () => {
           {/* Mobil için 4. sırada, md ve üzeri için 4. sırada (sağ altta) */}
           <div className="flex flex-col justify-center p-6 md:p-8 order-4 md:order-4">
             <h3 className="text-3xl md:text-4xl font-semibold text-neutral-800 mb-6 text-left">
-              Bize Ulaşın
+              {t('contact_title')}
             </h3>
             <div className="space-y-5 mb-6 text-left">
               {/* Adres */}
               <div className="flex items-start">
                 <MapPin className="w-6 h-6 text-red-700 mr-3 mt-1 flex-shrink-0" />
                 <div>
-                  <p className="font-medium text-neutral-700">Adres</p>
-                  <p className="text-neutral-500 text-sm">Hobyar Mahallesi, Kömürcü Bekir Sokak No: 2-D
-
-(Nimet Abla Piyangocusu karşısı ara sokak)
-
-Eminönü / İstanbul</p>
+                  <p className="font-medium text-neutral-700">{t('address_label')}</p>
+                  <p className="text-neutral-500 text-sm">{t('address_content')}</p>
                 </div>
               </div>
               {/* Telefon */}
               <div className="flex items-start">
                 <Phone className="w-6 h-6 text-red-700 mr-3 mt-1 flex-shrink-0" />
                 <div>
-                  <p className="font-medium text-neutral-700">Telefon</p>
-                  <a href="tel:+902161234567" className="text-neutral-500 hover:text-red-700 transition-colors duration-300 text-sm">0(212) 511 60 65
+                  <p className="font-medium text-neutral-700">{t('phone_label')}</p>
+                  <a href="tel:+902125116065" className="text-neutral-500 hover:text-red-700 transition-colors duration-300 text-sm">0(212) 511 60 65
                   <br />
 0(212) 522 33 90</a>
                 </div>
@@ -103,20 +102,17 @@ Eminönü / İstanbul</p>
               <div className="flex items-start">
                 <Mail className="w-6 h-6 text-red-700 mr-3 mt-1 flex-shrink-0" />
                 <div>
-                  <p className="font-medium text-neutral-700">E-posta</p>
-                  <a href="mailto:info@kofteciefendi.com" className="text-neutral-500 hover:text-red-700 transition-colors duration-300 text-sm">arafatkofte@gmail.com</a>
+                  <p className="font-medium text-neutral-700">{t('email_label')}</p>
+                  <a href="mailto:arafatkofte@gmail.com" className="text-neutral-500 hover:text-red-700 transition-colors duration-300 text-sm">arafatkofte@gmail.com</a>
                 </div>
               </div>
               {/* Çalışma Saatleri */}
               <div className="flex items-start">
                 <Clock className="w-6 h-6 text-red-700 mr-3 mt-1 flex-shrink-0" />
                 <div>
-                  <p className="font-medium text-neutral-700">Çalışma Saatleri</p>
-                  <p className="text-neutral-500 text-sm">
-                  
-                  Pazartesi - Cumartesi: 08:00 - 19:00
-                  <br />
-                  Pazar günleri kapalıyız
+                  <p className="font-medium text-neutral-700">{t('hours_label')}</p>
+                  <p className="text-neutral-500 text-sm whitespace-pre-line">
+                    {t('hours_content')}
                   </p>
                 </div>
               </div>

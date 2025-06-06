@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { navLinks, musicList } from '../constants';
 import { Instagram, Facebook } from 'lucide-react';
 import MusicArtwork from './MusicArtwork';
+import { useLanguage } from '../lib/i18n/LanguageContext';
 
 // Sidebar için props arayüzü
 interface SidebarProps {
@@ -9,8 +10,17 @@ interface SidebarProps {
   toggleMenu: () => void;
 }
 
+// DOM ID'leri ile navigasyon ID'leri arasındaki eşleştirme
+const navToDomMap = {
+  'home': 'hero',
+  'about': 'info',
+  'menu': 'menu',
+  'gallery': 'gallery'
+};
+
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleMenu }) => {
   const [randomMusic, setRandomMusic] = useState(musicList[0]);
+  const { t } = useLanguage();
 
   // Sayfa yüklendiğinde rastgele bir müzik seç
   useEffect(() => {
@@ -19,17 +29,20 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleMenu }) => {
   }, []);
 
   const handleNavClick = (id: string) => {
+    // Navigasyon ID'sini DOM ID'sine dönüştürme
+    const domId = navToDomMap[id as keyof typeof navToDomMap] || id;
+    
     // Kaydırma işlemini yapacak olan ana fonksiyon
     const performScroll = () => {
       const mainContainer = document.getElementById('main-content');
       if (!mainContainer) return;
 
-      if (id === 'hero') {
+      if (domId === 'hero') {
         // Ana Sayfa için ana konteyneri en üste kaydır
         mainContainer.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         // Diğer linkler için ilgili elemente kaydır
-        const element = document.getElementById(id);
+        const element = document.getElementById(domId);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
@@ -69,9 +82,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleMenu }) => {
       <div className="mb-8 text-center">
         <a 
           href="#"
-          onClick={(e) => { e.preventDefault(); handleNavClick('hero'); }}
+          onClick={(e) => { e.preventDefault(); handleNavClick('home'); }}
           className="inline-block mb-2 group"
-          aria-label="Ana Sayfa"
+          aria-label={t('home')}
         >
           <img 
             src="/logooo.webp" 
@@ -93,9 +106,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleMenu }) => {
               <button
                 onClick={() => handleNavClick(link.id)}
                 className="w-full text-center px-3 py-2.5 rounded-md text-3xl font-tuesday text-neutral-600 hover:bg-red-100 hover:text-red-700 focus:bg-red-100 focus:text-red-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500"
-                aria-label={link.title}
+                aria-label={t(link.id)}
               >
-                {link.title}
+                {t(link.id)}
               </button>
             </li>
           ))}
@@ -119,7 +132,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleMenu }) => {
         {/* Sosyal Medya Linkleri */}
         <div className="flex justify-center space-x-4 mt-6">
           <a 
-            href="https://instagram.com/arafatkofte" // Instagram linkinizi buraya ekleyin
+            href="https://instagram.com/arafatkofte" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-neutral-500 hover:text-red-700 transition-colors duration-300"
@@ -128,7 +141,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleMenu }) => {
             <Instagram className="w-6 h-6" />
           </a>
           <a 
-            href="https://facebook.com/arafatkofte" // Facebook linkinizi buraya ekleyin
+            href="https://facebook.com/arafatkofte" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-neutral-500 hover:text-red-700 transition-colors duration-300"

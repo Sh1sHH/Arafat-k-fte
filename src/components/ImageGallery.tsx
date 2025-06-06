@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 // import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { MasonryPhotoAlbum } from 'react-photo-album';
 import 'react-photo-album/masonry.css';
+import { useLanguage } from '../lib/i18n/LanguageContext';
 
 // Public klasöründeki görsellerin yolları
 const imageUrls = [
@@ -33,19 +34,35 @@ const imageUrls = [
 ];
 
 // Resimler için alt metinleri ve başlıkları hazırlayalım
-const imagesData = imageUrls.map((src, index) => {
-  const fileName = src.substring(src.lastIndexOf('/') + 1).replace(/\.[^/.]+$/, "");
-  const isStore = fileName.includes('dukkan');
-  
-  return {
-    src,
-    alt: `${isStore ? 'Dükkanımız' : 'Misafirlerimiz'} - ${fileName}`,
-    title: isStore ? 'Dükkanımız' : 'Misafirlerimiz',
-    description: isStore ? 'Arafat Köfte mekanımızdan görüntüler' : 'Değerli misafirlerimizle anılar'
-  };
-});
+const getImagesData = (locale: string) => {
+  return imageUrls.map((src, index) => {
+    const fileName = src.substring(src.lastIndexOf('/') + 1).replace(/\.[^/.]+$/, "");
+    const isStore = fileName.includes('dukkan');
+    
+    const title = {
+      tr: isStore ? 'Dükkanımız' : 'Misafirlerimiz',
+      en: isStore ? 'Our Restaurant' : 'Our Guests'
+    };
+    
+    const description = {
+      tr: isStore ? 'Arafat Köfte mekanımızdan görüntüler' : 'Değerli misafirlerimizle anılar',
+      en: isStore ? 'Views from our Arafat Köfte restaurant' : 'Memories with our valued guests'
+    };
+    
+    return {
+      src,
+      alt: `${locale === 'tr' ? title.tr : title.en} - ${fileName}`,
+      title: locale === 'tr' ? title.tr : title.en,
+      description: locale === 'tr' ? description.tr : description.en
+    };
+  });
+};
 
 const ImageGallery: React.FC = () => {
+  const { t, locale } = useLanguage();
+  // Dil değiştiğinde resimlerin açıklamalarını güncellemek için
+  const imagesData = getImagesData(locale);
+  
   // Seçilen resmi takip etmek için state
   const [selectedImage, setSelectedImage] = useState<null | {
     src: string;
@@ -80,7 +97,7 @@ const ImageGallery: React.FC = () => {
     <section id="gallery" className="bg-white py-16 md:py-24 px-4 md:px-6 lg:px-8">
       <div className="container mx-auto">
       <h2 className="text-5xl md:text-6xl font-tuesday text-neutral-800 mb-4 text-center">
-          Galeri
+          {t('gallery_title')}
         </h2>
         <div className="w-24 h-1 bg-red-700 mx-auto mb-12 md:mb-16"></div>
         
@@ -124,7 +141,7 @@ const ImageGallery: React.FC = () => {
             <button 
               className="absolute top-0 right-0 z-10 bg-black/50 text-white p-2 rounded-full m-4 hover:bg-black/80 transition-colors"
               onClick={closeModal}
-              aria-label="Kapat"
+              aria-label={t('gallery_close')}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18"></line>

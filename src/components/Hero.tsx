@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import { useLanguage } from '../lib/i18n/LanguageContext';
 
 const Hero: React.FC = () => {
   const [isVideoEnded, setIsVideoEnded] = useState(false);
+  const { t, locale } = useLanguage();
 
   const scrollToAbout = () => {
     const aboutSection = document.getElementById('info');
@@ -26,7 +28,7 @@ const Hero: React.FC = () => {
         src="/videos/koftevideo.mp4"
         onEnded={handleVideoEnd}
       >
-        Tarayıcınız video etiketini desteklemiyor.
+        {locale === 'tr' ? 'Tarayıcınız video etiketini desteklemiyor.' : 'Your browser does not support the video tag.'}
       </video>
       {/* Video Karartma Katmanı */}
       <div 
@@ -41,13 +43,13 @@ const Hero: React.FC = () => {
             Arafat <span className="text-white">Köfte</span>
           </h1>
           <p className="text-2xl sm:text-3xl md:text-4xl text-gray-200 max-w-xl mb-10 animate-fade-in-delay">
-            1986'den beri değişmeyen lezzet.
+            {t('slogan')}
           </p>
           <button
             onClick={scrollToAbout}
             className="bg-red-800 animate-fade-in-delay-2 py-3 px-8 text-white text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
           >
-            Hikayemizi Keşfedin
+            {t('discover_story')}
           </button>
         </div>
 

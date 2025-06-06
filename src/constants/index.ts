@@ -1,8 +1,8 @@
 export const navLinks = [
-  { id: "hero", title: "Ana Sayfa" },
-  { id: "info", title: "Bilgi" },
-  { id: "menu", title: "Menümüz" },
-  { id: "gallery", title: "Galerimiz" },
+  { id: "home", title: "Ana Sayfa" },
+  { id: "about", title: "Bilgi" },
+  { id: "menu", title: "Menü" },
+  { id: "gallery", title: "Galeri" },
 ];
 
 // Restoranın müzik koleksiyonu
