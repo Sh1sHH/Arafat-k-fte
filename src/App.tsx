@@ -43,7 +43,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePageLayout />} />
-      <Route path="/qr-menu" element={<QrMenuPage />} />
+      <Route path="/qr" element={<QrMenuPage />} />
     </Routes>
   );
 }
