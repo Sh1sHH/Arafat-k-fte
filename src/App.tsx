@@ -65,7 +65,7 @@ const HomePageLayout: React.FC = () => {
           <div className="container mx-auto px-4">
             <GoogleAdsense 
               client="ca-pub-6430440480434971"
-              slot="XXXXXXXXXX"
+              slot="9534281020"
               responsive={true}
               format="auto"
               className="w-full max-w-4xl mx-auto"
@@ -81,7 +81,7 @@ const HomePageLayout: React.FC = () => {
           <div className="container mx-auto px-4">
             <GoogleAdsense 
               client="ca-pub-6430440480434971"
-              slot="YYYYYYYYYY" /* Farklı bir slot ID'si kullanıyoruz */
+              slot="9534281020" /* Aynı slot ID'sini kullanıyoruz */
               responsive={true}
               format="auto"
               className="w-full max-w-4xl mx-auto"

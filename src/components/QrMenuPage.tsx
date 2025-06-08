@@ -80,7 +80,7 @@ const QrMenuPage: React.FC = () => {
         <div className="py-4 mb-6 bg-gray-50 rounded-lg">
           <GoogleAdsense 
             client="ca-pub-6430440480434971"
-            slot="ZZZZZZZZZ"
+            slot="9534281020"
             responsive={true}
             format="auto"
             className="w-full"
@@ -121,7 +121,7 @@ const QrMenuPage: React.FC = () => {
         <div className="py-4 mt-6 bg-gray-50 rounded-lg">
           <GoogleAdsense 
             client="ca-pub-6430440480434971"
-            slot="AAAAAAAAA"
+            slot="9534281020"
             responsive={true}
             format="auto"
             className="w-full"
