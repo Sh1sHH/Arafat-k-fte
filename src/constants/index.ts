@@ -203,7 +203,7 @@ export const menuItems = [
     name_en: "Cola (300 ml)",
     description_en: "A refreshing and classic choice.",
     image: "/cola.webp",
-    price: "60 ₺",
+    price: "70 ₺",
     category: "icecekler"
   },
   {
@@ -213,7 +213,7 @@ export const menuItems = [
     name_en: "Fanta (300 ml)",
     description_en: "The refreshing taste of orange.",
     image: "/fanta.webp",
-    price: "60 ₺",
+    price: "70 ₺",
     category: "icecekler"
   },
   {
@@ -223,7 +223,7 @@ export const menuItems = [
     name_en: "Sprite (300 ml)",
     description_en: "The freshness of lemon and lime.",
     image: "/sprite.webp",
-    price: "60 ₺",
+    price: "70 ₺",
     category: "icecekler"
   },
   {

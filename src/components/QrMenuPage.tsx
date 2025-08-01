@@ -77,7 +77,7 @@ const QrMenuPage: React.FC = () => {
         </div>
 
         {/* AdSense Reklamı - Kategori seçici altında */}
-        <div className="py-4 mb-6 bg-gray-50 rounded-lg">
+        {/* <div className="py-4 mb-6 bg-gray-50 rounded-lg">
           <GoogleAdsense 
             client="ca-pub-6430440480434971"
             slot="9534281020"
@@ -85,7 +85,7 @@ const QrMenuPage: React.FC = () => {
             format="auto"
             className="w-full"
           />
-        </div>
+        </div> */}
 
         {/* Menü Öğeleri */}
         <div className="grid grid-cols-1 gap-6">
@@ -118,7 +118,7 @@ const QrMenuPage: React.FC = () => {
         </div>
 
         {/* AdSense Reklamı - Menü öğeleri altında */}
-        <div className="py-4 mt-6 bg-gray-50 rounded-lg">
+        {/* <div className="py-4 mt-6 bg-gray-50 rounded-lg">
           <GoogleAdsense 
             client="ca-pub-6430440480434971"
             slot="9534281020"
@@ -126,7 +126,7 @@ const QrMenuPage: React.FC = () => {
             format="auto"
             className="w-full"
           />
-        </div>
+        </div> */}
       </main>
 
       {/* Altbilgi */}

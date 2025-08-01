@@ -61,7 +61,7 @@ const HomePageLayout: React.FC = () => {
         <InfoSection />
         
         {/* AdSense Reklamı - Info ve Menu arasında */}
-        <div className="py-8 bg-gray-50">
+        {/* <div className="py-8 bg-gray-50">
           <div className="container mx-auto px-4">
             <GoogleAdsense 
               client="ca-pub-6430440480434971"
@@ -71,23 +71,24 @@ const HomePageLayout: React.FC = () => {
               className="w-full max-w-4xl mx-auto"
             />
           </div>
-        </div>
+        </div> */}
         
         <Menu />
         <ImageGallery />
         
+        
         {/* AdSense Reklamı - Sayfanın altında */}
-        <div className="py-8 bg-gray-50">
+        {/* <div className="py-8 bg-gray-50">
           <div className="container mx-auto px-4">
             <GoogleAdsense 
               client="ca-pub-6430440480434971"
-              slot="9534281020" /* Aynı slot ID'sini kullanıyoruz */
+              slot="9534281020" // Aynı slot ID'sini kullanıyoruz
               responsive={true}
               format="auto"
               className="w-full max-w-4xl mx-auto"
             />
           </div>
-        </div>
+        </div> */}
         
         {/* Telif Hakkı Bilgisi */}
         <footer className="py-6 bg-white">
