@@ -1,4 +1,4 @@
-# XML dosyaları için doğru content-type
+# XML ve TXT dosyaları için doğru content-type
 <Files "sitemap.xml">
     Header set Content-Type "application/xml; charset=utf-8"
 </Files>
@@ -7,19 +7,22 @@
     Header set Content-Type "text/plain; charset=utf-8"
 </Files>
 
-# React Router için SPA routing
 RewriteEngine On
 RewriteBase /
 
-# Static dosyalar (resimler, CSS, JS, XML, TXT) için doğrudan serve et
+# HTTPS Yönlendirmesi (Sadece HTTP isteklerini HTTPS'ye yönlendirir)
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Static dosyalar (XML, TXT, resimler, CSS, JS) için doğrudan serve et
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule ^.*$ - [L]
 
-# API çağrıları değilse ve dosya yoksa index.html'e yönlendir
+# React SPA routing - tüm diğer istekleri index.html'e yönlendir
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} !^/api/
-RewriteRule ^.*$ /index.html [L]
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule . /index.html [L]
 
 # Gzip compression
 <IfModule mod_deflate.c>
