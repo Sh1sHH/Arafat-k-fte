@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Hero from './components/Hero';
 import InfoSection from './components/InfoSection';
@@ -7,6 +7,7 @@ import Menu from './components/Menu';
 import ImageGallery from './components/ImageGallery';
 import QrMenuPage from './components/QrMenuPage';
 import GoogleAdsense from './components/GoogleAdsense';
+import NotFound from './components/NotFound';
 import './styles/index.css';
 import { Menu as MenuIcon, X as XIcon } from 'lucide-react';
 import { useLanguage } from './lib/i18n/LanguageContext';
@@ -14,6 +15,34 @@ import { useLanguage } from './lib/i18n/LanguageContext';
 const HomePageLayout: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { locale, setLocale } = useLanguage();
+  const location = useLocation();
+
+  // URL'e göre ilgili bölüme scroll et
+  useEffect(() => {
+    const scrollToSection = () => {
+      const path = location.pathname;
+      let targetId = '';
+      
+      if (path.includes('menu')) {
+        targetId = 'menu';
+      } else if (path.includes('galeri') || path.includes('gallery')) {
+        targetId = 'gallery';
+      } else if (path.includes('iletisim') || path.includes('contact')) {
+        targetId = 'info';
+      }
+      
+      if (targetId) {
+        setTimeout(() => {
+          const element = document.getElementById(targetId);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
+    };
+
+    scrollToSection();
+  }, [location.pathname]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -76,7 +105,6 @@ const HomePageLayout: React.FC = () => {
         <Menu />
         <ImageGallery />
         
-        
         {/* AdSense Reklamı - Sayfanın altında */}
         {/* <div className="py-8 bg-gray-50">
           <div className="container mx-auto px-4">
@@ -108,6 +136,18 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePageLayout />} />
       <Route path="/qr" element={<QrMenuPage />} />
+      
+      {/* SEO friendly routes - ana sayfanın ilgili bölümlerine yönlendir */}
+      <Route path="/menu" element={<HomePageLayout />} />
+      <Route path="/menu.html" element={<HomePageLayout />} />
+      <Route path="/iletisim" element={<HomePageLayout />} />
+      <Route path="/contact.html" element={<HomePageLayout />} />
+      <Route path="/galeri" element={<HomePageLayout />} />
+      <Route path="/gallery.html" element={<HomePageLayout />} />
+      <Route path="/index.html" element={<HomePageLayout />} />
+      
+      {/* Catch-all route - tüm diğer URL'ler için 404 sayfası */}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
