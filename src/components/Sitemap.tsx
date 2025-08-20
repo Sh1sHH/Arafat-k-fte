@@ -2,15 +2,23 @@ import React, { useEffect } from 'react';
 
 const Sitemap: React.FC = () => {
   useEffect(() => {
-    // Meta tag ile content type belirt
+    // Sayfa title'ını değiştir
+    document.title = 'Sitemap';
+    
+    // XML response header'ı simüle et
     const metaTag = document.createElement('meta');
     metaTag.httpEquiv = 'Content-Type';
     metaTag.content = 'application/xml; charset=utf-8';
     document.head.appendChild(metaTag);
     
-    // Cleanup function
+    // Body'ye XML class ekle
+    document.body.className = 'xml-response';
+    
     return () => {
-      document.head.removeChild(metaTag);
+      if (document.head.contains(metaTag)) {
+        document.head.removeChild(metaTag);
+      }
+      document.body.className = '';
     };
   }, []);
 
