@@ -2,8 +2,16 @@ import React, { useEffect } from 'react';
 
 const Sitemap: React.FC = () => {
   useEffect(() => {
-    // XML content type ayarla
-    document.contentType = 'application/xml';
+    // Meta tag ile content type belirt
+    const metaTag = document.createElement('meta');
+    metaTag.httpEquiv = 'Content-Type';
+    metaTag.content = 'application/xml; charset=utf-8';
+    document.head.appendChild(metaTag);
+    
+    // Cleanup function
+    return () => {
+      document.head.removeChild(metaTag);
+    };
   }, []);
 
   const sitemapXML = `<?xml version="1.0" encoding="UTF-8"?>
