@@ -1,11 +1,17 @@
 # XML ve TXT dosyaları için doğru content-type
 <Files "sitemap.xml">
+    ForceType application/xml
     Header set Content-Type "application/xml; charset=utf-8"
 </Files>
 
 <Files "robots.txt">
+    ForceType text/plain
     Header set Content-Type "text/plain; charset=utf-8"
 </Files>
+
+# AddType ile de deneyelim
+AddType application/xml .xml
+AddType text/plain .txt
 
 RewriteEngine On
 RewriteBase /
