@@ -7,4 +7,15 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  // Static dosyalar için yapılandırma
+  publicDir: 'public',
+  build: {
+    rollupOptions: {
+      input: {
+        main: './index.html',
+      },
+    },
+    // Static dosyaları kopyala
+    copyPublicDir: true,
+  },
 });

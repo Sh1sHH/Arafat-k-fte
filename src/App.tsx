@@ -8,6 +8,7 @@ import ImageGallery from './components/ImageGallery';
 import QrMenuPage from './components/QrMenuPage';
 import GoogleAdsense from './components/GoogleAdsense';
 import NotFound from './components/NotFound';
+import Sitemap from './components/Sitemap';
 import './styles/index.css';
 import { Menu as MenuIcon, X as XIcon } from 'lucide-react';
 import { useLanguage } from './lib/i18n/LanguageContext';
@@ -145,6 +146,9 @@ function App() {
       <Route path="/galeri" element={<HomePageLayout />} />
       <Route path="/gallery.html" element={<HomePageLayout />} />
       <Route path="/index.html" element={<HomePageLayout />} />
+      
+      {/* Sitemap route */}
+      <Route path="/sitemap.xml" element={<Sitemap />} />
       
       {/* Catch-all route - tüm diğer URL'ler için 404 sayfası */}
       <Route path="*" element={<NotFound />} />
